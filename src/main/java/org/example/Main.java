@@ -8,41 +8,45 @@ public class Main {
     public static void main(String[] args) {
         var currThread = Thread.currentThread();
         System.out.println(currThread.getClass().getName());
-        printThreadInfo(currThread);
+//        printThreadInfo(currThread);
 
         currThread.setName("Main Guy");
-        currThread.setPriority(Thread.MAX_PRIORITY);
-        printThreadInfo(currThread);
+        currThread.setPriority(Thread.MIN_PRIORITY);
+//        printThreadInfo(currThread);
 
         //Custom thread
-        CustomThread cusThread = new CustomThread();
+        ParentCustom cusThread = new CustomThread();
+        ParentCustom ct2  = new CustomThread();
+
+        cusThread.update(2);
+        ct2.start();
         cusThread.start();
 
         //Passing lambda expression to thread
-        Runnable runnable = () -> {
-            for(int i=0; i<8; i++){
-                System.out.println(2);
-                try{
-                    TimeUnit.MILLISECONDS.sleep(200);
-                }catch (InterruptedException e){
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        Thread myThread = new Thread(runnable);
-        System.out.println(myThread.getPriority());
-        myThread.start();
-
-        //Printing the main thread
-        for(int i=0; i<3; i++){
-            System.out.println(0);
-            try{
-                TimeUnit.SECONDS.sleep(1);
-            }catch (InterruptedException e){
-                e.printStackTrace();
-            }
-        }
+//        Runnable runnable = () -> {
+//            for(int i=0; i<8; i++){
+//                System.out.println(2);
+//                try{
+//                    TimeUnit.MILLISECONDS.sleep(200);
+//                }catch (InterruptedException e){
+//                    e.printStackTrace();
+//                }
+//            }
+//        };
+//
+//        Thread myThread = new Thread(runnable);
+//        System.out.println(myThread.getPriority());
+//        myThread.start();
+//
+//        //Printing the main thread
+//        for(int i=0; i<3; i++){
+//            System.out.println(0);
+//            try{
+//                TimeUnit.SECONDS.sleep(1);
+//            }catch (InterruptedException e){
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     public static void printThreadInfo(Thread thread){
