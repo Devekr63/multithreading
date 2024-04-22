@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         var currThread = Thread.currentThread();
         System.out.println(currThread.getClass().getName());
 //        printThreadInfo(currThread);
@@ -19,6 +19,8 @@ public class Main {
         ParentCustom ct2  = new CustomThread();
 
         cusThread.update(2);
+        ct2.update(10);
+//        cusThread.joinWith(ct2);
         ct2.start();
         cusThread.start();
 

@@ -1,6 +1,11 @@
 package org.example;
 
 public class CustomThread extends Thread implements ParentCustom{
+    private Thread currentThread;
+
+    public CustomThread(){
+        currentThread = currentThread();
+    }
     @Override
     public void run() {
         for(int i=1; i<nums.size(); i++){
@@ -26,6 +31,20 @@ public class CustomThread extends Thread implements ParentCustom{
     @Override
     public void update(int p) {
         this.setPriority(p);
+    }
+
+    @Override
+    public void joinWith(ParentCustom thread) throws InterruptedException {
+        thread.joinOn();
+    }
+
+    @Override
+    public Thread getCurrentThread() {
+        return currentThread;
+    }
+
+    public void joinOn() throws InterruptedException {
+        currentThread.join();
     }
 
     private StringBuffer getStringBuff(String string){
