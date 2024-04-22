@@ -4,14 +4,16 @@ import java.util.concurrent.TimeUnit;
 
 public class LocalMain {
     public static void main(String[] args) {
-        StopWatch stopWatch = new StopWatch(TimeUnit.SECONDS);
+        StopWatch greenWatch = new StopWatch(TimeUnit.SECONDS);
+        StopWatch redWatch = new StopWatch(TimeUnit.SECONDS);
+        StopWatch yellowWatch = new StopWatch(TimeUnit.SECONDS);
 
         //Creating 3 new different Threads, of same stop watch: stopWatch.
-        Thread green = new Thread(stopWatch::countDown, ThreadColor.ANSI_GREEN.name());
+        Thread green = new Thread(greenWatch::countDown, ThreadColor.ANSI_GREEN.name());
         Thread red = new Thread(
-                () -> stopWatch.countDown(7),
+                () -> redWatch.countDown(7),
                 ThreadColor.ANSI_RED.name());
-        Thread yellow = new Thread(stopWatch::countDown, ThreadColor.ANSI_YELLOW.name());
+        Thread yellow = new Thread(yellowWatch::countDown, ThreadColor.ANSI_YELLOW.name());
 
         green.start();
         red.start();
