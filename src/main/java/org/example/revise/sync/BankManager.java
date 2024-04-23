@@ -1,4 +1,4 @@
-package org.example.revise;
+package org.example.revise.sync;
 
 public class BankManager {
     public static void main(String[] args) {

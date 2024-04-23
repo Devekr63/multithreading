@@ -1,4 +1,4 @@
-package org.example.revise;
+package org.example.revise.sync;
 
 public class Item {
     private int quantity;

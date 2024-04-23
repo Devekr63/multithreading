@@ -2,7 +2,9 @@ package org.example.cached_data;
 
 public class CachedData {
 //    private boolean flag = false;
-//
+    //shared data can be cached locally for a thread.
+
+    //volatile keyword avoid caching locally of the shared data for the thread.
     private volatile boolean flag = false;
 
     public void toggleFlag(){
