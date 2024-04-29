@@ -3,6 +3,8 @@ package org.example.challenge.deadlock;
 public class OrderConsumer implements Runnable{
     Warehouse warehouse;
 
+    private boolean running=true;
+
     int orderConsumer;
 
     private String name;
@@ -16,8 +18,11 @@ public class OrderConsumer implements Runnable{
     @Override
     public void run() {
 
-
-        while(orderConsumer != 5){
+        while(true){
+            if(!running){
+                System.out.println("Shutting Down.....");
+                Thread.currentThread().interrupt();
+            }
             try{
                 Thread.sleep(500);
             }catch(InterruptedException ie){
@@ -27,5 +32,9 @@ public class OrderConsumer implements Runnable{
             orderConsumer++;
             System.out.println("Fulfilled by: "+name);
         }
+    }
+
+    public void shutdown(){
+        running = true;
     }
 }

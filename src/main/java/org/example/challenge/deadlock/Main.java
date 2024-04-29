@@ -36,9 +36,25 @@ public class Main {
         Thread shoeConsumer1 = new Thread(new OrderConsumer(warehouse, "CON-01"),"consumer");
         Thread shoeConsumer2 = new Thread(new OrderConsumer(warehouse, "CON-02"),"consumer");
 
+        Thread stopConsumer = new Thread(
+                ()->{
+                    try{
+                        Thread.sleep(100000);
+                    }catch (InterruptedException ie){
+                        throw new RuntimeException(ie);
+                    }
+                    shoeConsumer2.interrupt();
+                    shoeConsumer1.interrupt();
+                }
+        );
+
         shoeProducer.start();
         shoeConsumer1.start();
         shoeConsumer2.start();
+
+        stopConsumer.start();
+
+
 
 //        try{
 //            shoeConsumer1.join();
